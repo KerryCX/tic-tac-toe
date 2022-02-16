@@ -1,0 +1,62 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+main {
+    background-color: antiquewhite;
+}
+
+section {
+    display: grid;
+    grid-template-areas: ". . ."
+    ". . ."
+    ". . .";
+    height: 50vh;
+    width: 50vw;
+    row-gap: 0;
+    column-gap: 0;
+    margin: 50px;
+    background-color: white;
+    border: black 5px solid;
+}
+
+.section-toggle {
+    pointer-events: none;
+}
+
+.reset-box {
+    display:flex; 
+    justify-content: center; 
+    background-color: antiquewhite;
+    height: 100px;
+    width: 75%;
+}
+
+.reset-button {
+    margin: 10px;
+    padding: 10px;
+    width: auto;
+    height: 40px;
+    visibility: hidden;
+}
+
+.reset-button-toggle {
+    visibility: visible;
+}
+.square {
+    height: 100%;
+    width: 100%;
+    border: black 5px solid;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+h1 { 
+    padding: 0;
+    margin: 0;
+}
