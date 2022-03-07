@@ -172,8 +172,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -186,8 +185,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+               draw();
             }
             return false;
         }
@@ -203,8 +201,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -217,8 +214,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -234,8 +230,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -248,8 +243,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -265,8 +259,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -279,8 +272,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         } else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -296,8 +288,7 @@ const checkIfWinner = (counter, currentSquare) => {
             return true;
         }else {
             if(numberOfPlays>=9) {
-                sectionArea.classList.toggle("section-toggle");
-                resetButton.classList.toggle("reset-button-toggle");
+                draw();
             }
             return false;
         }
@@ -310,7 +301,20 @@ const winner = (sq1, sq2, sq3) => {
     sq3.style.backgroundColor = "green"
 }
 
-
+const draw = () => {
+    messageBox.innerText= "It is a draw!"
+    square1.style.backgroundColor = "brown";
+    square2.style.backgroundColor = "brown";
+    square3.style.backgroundColor = "brown";
+    square4.style.backgroundColor = "brown";
+    square5.style.backgroundColor = "brown";
+    square6.style.backgroundColor = "brown";
+    square7.style.backgroundColor = "brown";
+    square8.style.backgroundColor = "brown";
+    square9.style.backgroundColor = "brown";
+    sectionArea.classList.toggle("section-toggle");
+    resetButton.classList.toggle("reset-button-toggle");
+}
 
 resetButton.addEventListener("click", () => {
     numberOfPlays = 0
