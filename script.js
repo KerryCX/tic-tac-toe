@@ -14,17 +14,32 @@ const sectionArea = document.querySelector("section")
 const resetButton = document.querySelector(".reset-button")
 const squares = document.querySelectorAll(".square")
 
-
+const updateMessageBox = (type, counter) => {
+    switch(type) {
+        case "turn":
+            messageBox.innerText=currentPlayer(counter)+"'s turn"
+            break;
+        case "taken":
+            messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+            break;
+        case "win":
+            messageBox.innerText= counter + " wins"
+        case "draw":
+            messageBox.innerText= "It is a draw!"
+        default: 
+            break;
+    }
+}
 const square1 = document.querySelector("#a1")
 square1.addEventListener("click", () => {
     if(square1.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square1.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square1)    
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
     
 })
@@ -33,12 +48,12 @@ const square2 = document.querySelector("#a2")
 square2.addEventListener("click", () => {
     if(square2.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square2.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square2)        
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -46,12 +61,12 @@ const square3 = document.querySelector("#a3")
 square3.addEventListener("click", () => {
     if(square3.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square3.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square3)   
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -59,12 +74,12 @@ const square4 = document.querySelector("#b1")
 square4.addEventListener("click", () => {
     if(square4.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square4.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square4)            
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -72,12 +87,12 @@ const square5 = document.querySelector("#b2")
 square5.addEventListener("click", (e) => {
     if(square5.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square5.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square5)    
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -85,12 +100,12 @@ const square6 = document.querySelector("#b3")
 square6.addEventListener("click", (e) => {
     if(square6.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square6.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square6)     
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -98,12 +113,12 @@ const square7 = document.querySelector("#c1")
 square7.addEventListener("click", () => {
     if(square7.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square7.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square7)   
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -111,12 +126,12 @@ const square8 = document.querySelector("#c2")
 square8.addEventListener("click", () => {
     if(square8.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square8.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square8)       
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -124,12 +139,12 @@ const square9 = document.querySelector("#c3")
 square9.addEventListener("click", () => {
     if(square9.innerHTML === "") {
         counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
+        updateMessageBox("turn", counter)
         square9.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
         checkIfWinner(square9)          
     } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+        updateMessageBox("taken", counter)
     }
 })
 
@@ -248,14 +263,14 @@ const checkIfWinner = (currentSquare) => {
 const winner = (sq1, sq2, sq3) => {
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-    messageBox.innerText= counter + " wins"
+    updateMessageBox("win", counter)
     sq1.style.backgroundColor = "green"
     sq2.style.backgroundColor = "green"
     sq3.style.backgroundColor = "green"
 }
 
 const draw = () => {
-    messageBox.innerText= "It is a draw!"
+    updateMessageBox("draw", false)
     square1.style.backgroundColor = "brown";
     square2.style.backgroundColor = "brown";
     square3.style.backgroundColor = "brown";
