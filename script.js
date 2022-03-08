@@ -21,9 +21,9 @@ square1.addEventListener("click", () => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square1.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square1)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square1)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }    
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
@@ -54,7 +54,7 @@ square3.addEventListener("click", () => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square3.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square3)){
+        if(checkIfWinner(square3)){
             sectionArea.classList.toggle("section-toggle");
             resetButton.classList.toggle("reset-button-toggle");
         }    
@@ -70,9 +70,9 @@ square4.addEventListener("click", () => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square4.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square4)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square4)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }    
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
@@ -86,9 +86,9 @@ square5.addEventListener("click", (e) => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square5.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square5)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square5)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }    
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
@@ -102,9 +102,9 @@ square6.addEventListener("click", (e) => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square6.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square6)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square6)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }    
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
@@ -118,9 +118,9 @@ square7.addEventListener("click", () => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square7.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square7)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square7)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }    
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
@@ -134,9 +134,9 @@ square8.addEventListener("click", () => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square8.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square8)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square8)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }    
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
@@ -150,16 +150,16 @@ square9.addEventListener("click", () => {
         messageBox.innerText=currentPlayer(counter)+"'s turn"
         square9.innerHTML ="<h1>"+counter+"</h1>"
         numberOfPlays ++
-        if(checkIfWinner(counter, square9)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
+        if(checkIfWinner(square9)){
+            // sectionArea.classList.toggle("section-toggle");
+            // resetButton.classList.toggle("reset-button-toggle");
         }        
     } else {
         messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
     }
 })
 
-const checkIfWinner = (counter, currentSquare) => {
+const checkIfWinner = (currentSquare) => {
     if(currentSquare.id === "a1"){
         if(currentSquare.innerText === square2.innerText && currentSquare.innerText === square3.innerText) {
             winner(currentSquare, square2, square3)
@@ -295,10 +295,13 @@ const checkIfWinner = (counter, currentSquare) => {
     } 
 }
 const winner = (sq1, sq2, sq3) => {
+    sectionArea.classList.toggle("section-toggle");
+    resetButton.classList.toggle("reset-button-toggle");
     messageBox.innerText= counter + " wins"
     sq1.style.backgroundColor = "green"
     sq2.style.backgroundColor = "green"
     sq3.style.backgroundColor = "green"
+
 }
 
 const draw = () => {
