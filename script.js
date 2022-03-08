@@ -273,15 +273,9 @@ const winner = (sq1, sq2, sq3) => {
 
 const draw = () => {
     updateMessageBox("draw", false)
-    square1.style.backgroundColor = "brown";
-    square2.style.backgroundColor = "brown";
-    square3.style.backgroundColor = "brown";
-    square4.style.backgroundColor = "brown";
-    square5.style.backgroundColor = "brown";
-    square6.style.backgroundColor = "brown";
-    square7.style.backgroundColor = "brown";
-    square8.style.backgroundColor = "brown";
-    square9.style.backgroundColor = "brown";
+    for (i =0; i<9; i++){
+        squares[i].style.backgroundColor = "#a52a2a";
+    }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
 }
