@@ -263,12 +263,12 @@ const checkIfWinner = (currentSquare) => {
     } 
 }
 const winner = (sq1, sq2, sq3) => {
+    updateMessageBox("win", counter)
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-    updateMessageBox("win", counter)
-    sq1.style.backgroundColor = "green"
-    sq2.style.backgroundColor = "green"
-    sq3.style.backgroundColor = "green"
+    sq1.style.backgroundColor = "#008000"
+    sq2.style.backgroundColor = "#008000"
+    sq3.style.backgroundColor = "#008000"
 }
 
 const draw = () => {
@@ -280,7 +280,8 @@ const draw = () => {
     resetButton.classList.toggle("reset-button-toggle");
 }
 
-resetButton.addEventListener("click", () => {
+resetButton.addEventListener("click", () => { 
+    updateMessageBox("turn", counter)
     numberOfPlays = 0
     for (i =0; i<9; i++){
         squares[i].style.backgroundColor = "#ffffff";
@@ -288,7 +289,7 @@ resetButton.addEventListener("click", () => {
     }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-    updateMessageBox("turn", counter)
+   
 })
 
 
