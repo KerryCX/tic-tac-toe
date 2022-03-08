@@ -3,11 +3,11 @@
 }
 
 body {
-    background-color: antiquewhite;
+    background-color: #faebd7;
 }
 
 main {
-    background-color: antiquewhite;
+    background-color: #faebd7;
 }
 
 section {
@@ -20,8 +20,8 @@ section {
     row-gap: 0;
     column-gap: 0;
     margin: 50px;
-    background-color: white;
-    border: black 5px solid;
+    background-color: #ffffff;
+    border: #000000 5px solid;
 }
 
 .section-toggle {
@@ -31,7 +31,7 @@ section {
 .reset-box {
     display:flex; 
     justify-content: center; 
-    background-color: antiquewhite;
+    background-color: #faebd7;
     height: 100px;
     width: 75%;
 }
@@ -50,7 +50,7 @@ section {
 .square {
     height: 100%;
     width: 100%;
-    border: black 5px solid;
+    border: #000000 5px solid;
     margin: 0;
     display: flex;
     justify-content: center;

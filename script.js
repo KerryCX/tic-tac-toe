@@ -24,8 +24,10 @@ const updateMessageBox = (type, counter) => {
             break;
         case "win":
             messageBox.innerText= counter + " wins"
+            break;
         case "draw":
             messageBox.innerText= "It is a draw!"
+            break;
         default: 
             break;
     }
@@ -286,27 +288,13 @@ const draw = () => {
 
 resetButton.addEventListener("click", () => {
     numberOfPlays = 0
-    square1.style.backgroundColor = "white";
-    square2.style.backgroundColor = "white";
-    square3.style.backgroundColor = "white";
-    square4.style.backgroundColor = "white";
-    square5.style.backgroundColor = "white";
-    square6.style.backgroundColor = "white";
-    square7.style.backgroundColor = "white";
-    square8.style.backgroundColor = "white";
-    square9.style.backgroundColor = "white";
-    square1.innerText = ""
-    square2.innerText = ""
-    square3.innerText = ""
-    square4.innerText = ""
-    square5.innerHTML = ""
-    square6.innerText = ""
-    square7.innerText = ""
-    square8.innerText = ""
-    square9.innerText = ""
+    for (i =0; i<9; i++){
+        squares[i].style.backgroundColor = "#ffffff";
+        squares[i].innerText = ""
+    }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-    messageBox.innerText=currentPlayer(counter)+"'s turn"
+    updateMessageBox("turn", counter)
 })
 
 
