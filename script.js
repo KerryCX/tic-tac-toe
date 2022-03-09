@@ -32,123 +32,30 @@ const updateMessageBox = (type, counter) => {
             break;
     }
 }
+
+
+
 const square1 = document.querySelector("#a1")
-square1.addEventListener("click", () => {
-    if(square1.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square1.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square1)    
-    } else {
-        updateMessageBox("taken", counter)
-    }
-    
-})
-
 const square2 = document.querySelector("#a2")
-square2.addEventListener("click", () => {
-    if(square2.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square2.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square2)        
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square3 = document.querySelector("#a3")
-square3.addEventListener("click", () => {
-    if(square3.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square3.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square3)   
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square4 = document.querySelector("#b1")
-square4.addEventListener("click", () => {
-    if(square4.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square4.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square4)            
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square5 = document.querySelector("#b2")
-square5.addEventListener("click", (e) => {
-    if(square5.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square5.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square5)    
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square6 = document.querySelector("#b3")
-square6.addEventListener("click", (e) => {
-    if(square6.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square6.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square6)     
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square7 = document.querySelector("#c1")
-square7.addEventListener("click", () => {
-    if(square7.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square7.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square7)   
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square8 = document.querySelector("#c2")
-square8.addEventListener("click", () => {
-    if(square8.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square8.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square8)       
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
-
 const square9 = document.querySelector("#c3")
-square9.addEventListener("click", () => {
-    if(square9.innerHTML === "") {
-        counter = currentPlayer(counter)
-        updateMessageBox("turn", counter)
-        square9.innerHTML ="<h1>"+counter+"</h1>"
-        numberOfPlays ++
-        checkIfWinner(square9)          
-    } else {
-        updateMessageBox("taken", counter)
-    }
-})
+
+for (i =0; i<squares.length; i++){
+    squares[i].addEventListener("click", (e) => {
+        if(e.target.innerHTML === ""){
+            counter = currentPlayer(counter)
+            updateMessageBox("turn", counter)
+            e.target.innerHTML ="<h1>"+counter+"</h1>"
+            numberOfPlays ++
+            checkIfWinner(e.target)   
+        }
+    })
+}
 
 const checkIfWinner = (currentSquare) => {
     if(currentSquare.id === "a1"){
