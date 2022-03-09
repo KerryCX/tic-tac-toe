@@ -24,9 +24,11 @@ main {
     height: 500px;
     row-gap: 0;
     column-gap: 0;
-    margin: 50px;
+    margin: 25px 0 0 0;
     background-color: #ffffff;
     border: #000000 5px solid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
 }
 
 .section-toggle {
@@ -59,9 +61,42 @@ main {
     margin: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-h1 { 
+h2 { 
+    text-align: center;
+    font-size: 50px;
+}
+
+.game-heading { 
+    font-size: 100px;
     padding: 0;
-    margin: 0;
+    margin: 25px 0 0 0;
+    text-align: center;
+}
+
+h3 { 
+    text-align: center;
+    font-size: 50px;
+    margin: 25px 0 0 0;
+}
+
+@media (max-width: 500px) {
+    .grid-container {
+      width: 250px;
+      height: 250px;
+      grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .game-heading { 
+        font-size: 50px;
+    }
+    h3 { 
+        font-size: 25px;
+    }
+    h2 { 
+        text-align: center;
+        font-size: 25px;
+    }
 }

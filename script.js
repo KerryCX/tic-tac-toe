@@ -35,7 +35,7 @@ for (i =0; i<squares.length; i++){
         if(e.target.innerHTML === "") {
             counter = currentPlayer(counter)
             updateMessageBox("turn", counter)
-            e.target.innerHTML ="<h1>"+counter+"</h1>"
+            e.target.innerHTML ="<h2>"+counter+"</h2>"
             numberOfPlays ++
             if(!checkIfWinner(e.target)){
                 if(numberOfPlays===9){
