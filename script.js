@@ -6,23 +6,27 @@ const currentPlayer = (player) => {
 }
 
 const messageBox = document.querySelector("#message")
-const sectionArea = document.querySelector("section")
+const sectionArea = document.querySelector(".section-container")
 const resetButton = document.querySelector(".reset-button")
 const squares = document.querySelectorAll(".square")
 
 const updateMessageBox = (type, counter) => {
     switch(type) {
         case "turn":
-            messageBox.innerText=currentPlayer(counter)+"'s turn"
+            messageBox.innerText=currentPlayer(counter)+"'s turn!"
+            messageBox.style.color= "#4169e1"
             break;
         case "taken":
             messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+            messageBox.style.color= "#FF0000"
             break;
         case "win":
-            messageBox.innerText= counter + " wins"
+            messageBox.innerText= counter + " wins!"
+            messageBox.style.color= "#008000"
             break;
         case "draw":
             messageBox.innerText= "It is a draw!"
+            messageBox.style.color= "#FFBF00"
             break;
         default: 
             break;
@@ -35,18 +39,20 @@ for (i =0; i<squares.length; i++){
         if(e.target.innerHTML === "") {
             counter = currentPlayer(counter)
             updateMessageBox("turn", counter)
-            e.target.innerHTML ="<h1>"+counter+"</h1>"
+            e.target.innerHTML ="<h2>"+counter+"</h2>"
             numberOfPlays ++
             if(!checkIfWinner(e.target)){
                 if(numberOfPlays===9){
                     draw()
                 }
             }    
+        } else {
+            updateMessageBox("taken", counter)
         }
     })
 }
 
-const checkIfWinner = (currentSquare, i) => {
+const checkIfWinner = (currentSquare) => {
     if(currentSquare.id === "s0"){
         if(currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[2].innerText) {
             return winner(currentSquare, squares[1], squares[2])
@@ -134,6 +140,7 @@ const checkIfWinner = (currentSquare, i) => {
 const winner = (sq1, sq2, sq3) => {
     updateMessageBox("win", counter)
     sectionArea.classList.toggle("section-toggle");
+    messageBox.classList.toggle("winner");
     resetButton.classList.toggle("reset-button-toggle");
     sq1.style.backgroundColor = "#008000"
     sq2.style.backgroundColor = "#008000"
@@ -143,11 +150,13 @@ const winner = (sq1, sq2, sq3) => {
 
 const draw = () => {
     updateMessageBox("draw", false)
+    
     for (i =0; i<9; i++){
         squares[i].style.backgroundColor = "#a52a2a";
     }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
+    messageBox.classList.toggle("winner");
 }
 
 resetButton.addEventListener("click", () => { 
@@ -159,7 +168,7 @@ resetButton.addEventListener("click", () => {
     }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-   
+    messageBox.classList.toggle("winner");
 })
 
 
