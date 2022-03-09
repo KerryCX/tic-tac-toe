@@ -14,15 +14,19 @@ const updateMessageBox = (type, counter) => {
     switch(type) {
         case "turn":
             messageBox.innerText=currentPlayer(counter)+"'s turn"
+            messageBox.style.color= "#000000"
             break;
         case "taken":
             messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+            messageBox.style.color= "#FF0000"
             break;
         case "win":
             messageBox.innerText= counter + " wins"
+            messageBox.style.color= "#008000"
             break;
         case "draw":
             messageBox.innerText= "It is a draw!"
+            messageBox.style.color= "#FFBF00"
             break;
         default: 
             break;
@@ -134,6 +138,7 @@ const checkIfWinner = (currentSquare, i) => {
 const winner = (sq1, sq2, sq3) => {
     updateMessageBox("win", counter)
     sectionArea.classList.toggle("section-toggle");
+    messageBox.classList.toggle("winner");
     resetButton.classList.toggle("reset-button-toggle");
     sq1.style.backgroundColor = "#008000"
     sq2.style.backgroundColor = "#008000"
@@ -143,11 +148,13 @@ const winner = (sq1, sq2, sq3) => {
 
 const draw = () => {
     updateMessageBox("draw", false)
+    
     for (i =0; i<9; i++){
         squares[i].style.backgroundColor = "#a52a2a";
     }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
+    messageBox.classList.toggle("winner");
 }
 
 resetButton.addEventListener("click", () => { 
@@ -159,7 +166,7 @@ resetButton.addEventListener("click", () => {
     }
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-   
+    messageBox.classList.toggle("winner");
 })
 
 
