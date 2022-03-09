@@ -13,15 +13,15 @@ const squares = document.querySelectorAll(".square")
 const updateMessageBox = (type, counter) => {
     switch(type) {
         case "turn":
-            messageBox.innerText=currentPlayer(counter)+"'s turn"
-            messageBox.style.color= "#000000"
+            messageBox.innerText=currentPlayer(counter)+"'s turn!"
+            messageBox.style.color= "#4169e1"
             break;
         case "taken":
             messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
             messageBox.style.color= "#FF0000"
             break;
         case "win":
-            messageBox.innerText= counter + " wins"
+            messageBox.innerText= counter + " wins!"
             messageBox.style.color= "#008000"
             break;
         case "draw":
@@ -46,11 +46,13 @@ for (i =0; i<squares.length; i++){
                     draw()
                 }
             }    
+        } else {
+            updateMessageBox("taken", counter)
         }
     })
 }
 
-const checkIfWinner = (currentSquare, i) => {
+const checkIfWinner = (currentSquare) => {
     if(currentSquare.id === "s0"){
         if(currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[2].innerText) {
             return winner(currentSquare, squares[1], squares[2])
