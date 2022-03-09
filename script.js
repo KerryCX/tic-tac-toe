@@ -41,7 +41,13 @@ for (i =0; i<squares.length; i++){
             updateMessageBox("turn", counter)
             e.target.innerHTML ="<h1>"+counter+"</h1>"
             numberOfPlays ++
-            checkIfWinner(e.target)   
+            if(!checkIfWinner(e.target)){
+                console.log("not winner this time")
+                if(numberOfPlays===9){
+                    console.log("draw")
+                    draw()
+                }
+            }    
         }
     })
 }
@@ -55,9 +61,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[8].innerText) {
             return winner(currentSquare, squares[4], squares[8])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s1"){
@@ -66,9 +69,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[7].innerText) {
             return winner(currentSquare, squares[4], squares[7])
         } else {
-            if(numberOfPlays>=9) {
-               draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s2"){
@@ -79,9 +79,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[5].innerText && currentSquare.innerText === squares[8].innerText) {
             return winner(currentSquare, squares[5], squares[8])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s3"){
@@ -90,9 +87,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[5].innerText) {
             return winner(currentSquare, squares[4], squares[5])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s4"){
@@ -103,9 +97,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[6].innerText) {
             return winner(currentSquare, squares[2], squares[6])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s5"){
@@ -114,9 +105,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[3].innerText && currentSquare.innerText === squares[4].innerText) {
             return winner(currentSquare, squares[3], squares[4])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s6"){
@@ -127,9 +115,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[4].innerText) {
             return winner(currentSquare, squares[2], squares[4])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s7"){
@@ -138,9 +123,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[4].innerText) {
             return winner(currentSquare, squares[1], squares[4])
         } else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } else if(currentSquare.id === "s8"){
@@ -151,9 +133,6 @@ const checkIfWinner = (currentSquare, i) => {
         } else if (currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[5].innerText) {
             return winner(currentSquare, squares[5], squares[2])
         }else {
-            if(numberOfPlays>=9) {
-                draw();
-            }
             return false;
         }
     } 
@@ -165,6 +144,7 @@ const winner = (sq1, sq2, sq3) => {
     sq1.style.backgroundColor = "#008000"
     sq2.style.backgroundColor = "#008000"
     sq3.style.backgroundColor = "#008000"
+    return true;
 }
 
 const draw = () => {
