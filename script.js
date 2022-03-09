@@ -1,280 +1,165 @@
 let counter = "O"
+let numberOfPlays = 0
 
 const currentPlayer = (player) => {
-    if(player === "X") {
-        return "O"
-    } else {
-        return "X"
-    }
+    return player === "X" ? "O" : "X"
 }
+
 const messageBox = document.querySelector("#message")
 const sectionArea = document.querySelector("section")
 const resetButton = document.querySelector(".reset-button")
 const squares = document.querySelectorAll(".square")
 
-
-const square1 = document.querySelector("#a1")
-square1.addEventListener("click", () => {
-    if(square1.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square1.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square1)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+const updateMessageBox = (type, counter) => {
+    switch(type) {
+        case "turn":
+            messageBox.innerText=currentPlayer(counter)+"'s turn"
+            break;
+        case "taken":
+            messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
+            break;
+        case "win":
+            messageBox.innerText= counter + " wins"
+            break;
+        case "draw":
+            messageBox.innerText= "It is a draw!"
+            break;
+        default: 
+            break;
     }
-    
-})
-
-const square2 = document.querySelector("#a2")
-square2.addEventListener("click", () => {
-    if(square2.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square2.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square2)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square3 = document.querySelector("#a3")
-square3.addEventListener("click", () => {
-    if(square3.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square3.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square3)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square4 = document.querySelector("#b1")
-square4.addEventListener("click", () => {
-    if(square4.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square4.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square4)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square5 = document.querySelector("#b2")
-square5.addEventListener("click", (e) => {
-    if(square5.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square5.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square5)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square6 = document.querySelector("#b3")
-square6.addEventListener("click", (e) => {
-    if(square6.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square6.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square6)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square7 = document.querySelector("#c1")
-square7.addEventListener("click", () => {
-    if(square7.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square7.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square7)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square8 = document.querySelector("#c2")
-square8.addEventListener("click", () => {
-    if(square8.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square8.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square8)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }    
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const square9 = document.querySelector("#c3")
-square9.addEventListener("click", () => {
-    if(square9.innerHTML === "") {
-        counter = currentPlayer(counter)
-        messageBox.innerText=currentPlayer(counter)+"'s turn"
-        square9.innerHTML ="<h1>"+counter+"</h1>"
-        if(checkIfWinner(counter, square9)){
-            sectionArea.classList.toggle("section-toggle");
-            resetButton.classList.toggle("reset-button-toggle");
-        }        
-    } else {
-        messageBox.innerText= "Already taken, choose another place for " + currentPlayer(counter)
-    }
-})
-
-const checkIfWinner = (counter, currentSquare) => {
-    if(currentSquare.id === "a1"){
-        if(currentSquare.innerText === square2.innerText && currentSquare.innerText === square3.innerText) {
-            winner(currentSquare, square2, square3)
-            return true;
-        } else if (currentSquare.innerText === square4.innerText && currentSquare.innerText === square7.innerText) {
-            winner(currentSquare, square4, square7)
-            return true;
-        } else if (currentSquare.innerText === square5.innerText && currentSquare.innerText === square9.innerText) {
-            winner(currentSquare, square5, square9)
-            return true;
-        }
-    } else if(currentSquare.id === "a2"){
-        if(currentSquare.innerText === square1.innerText && currentSquare.innerText === square3.innerText) {
-            winner(currentSquare, square1, square3)
-            return true;
-        } else if (currentSquare.innerText === square5.innerText && currentSquare.innerText === square8.innerText) {
-            winner(currentSquare, square5, square8)
-            return true;
-        }
-    } else if(currentSquare.id === "a3"){
-        if(currentSquare.innerText === square1.innerText && currentSquare.innerText === square2.innerText) {
-            winner(currentSquare, square1, square2)
-            return true;
-        } else if (currentSquare.innerText === square5.innerText && currentSquare.innerText === square7.innerText) {
-            winner(currentSquare, square5, square7)
-            return true;
-        } else if (currentSquare.innerText === square6.innerText && currentSquare.innerText === square9.innerText) {
-            winner(currentSquare, square6, square9)
-            return true;
-        }
-    } else if(currentSquare.id === "b1"){
-        if(currentSquare.innerText === square1.innerText && currentSquare.innerText === square7.innerText) {
-            winner(currentSquare, square1, square7)
-            return true;
-        } else if (currentSquare.innerText === square5.innerText && currentSquare.innerText === square6.innerText) {
-            winner(currentSquare, square5, square6)
-            return true;
-        }
-    } else if(currentSquare.id === "b2"){
-        if(currentSquare.innerText === square1.innerText && currentSquare.innerText === square9.innerText) {
-            winner(currentSquare, square1, square9)
-            return true;
-        } else if (currentSquare.innerText === square2.innerText && currentSquare.innerText === square8.innerText) {
-            winner(currentSquare, square2, square8)
-            return true;
-        } else if (currentSquare.innerText === square3.innerText && currentSquare.innerText === square7.innerText) {
-            winner(currentSquare, square3, square7)
-            return true;
-        }
-    } else if(currentSquare.id === "b3"){
-        if(currentSquare.innerText === square3.innerText && currentSquare.innerText === square9.innerText) {
-            winner(currentSquare, square9, square3)
-            return true;
-        } else if (currentSquare.innerText === square4.innerText && currentSquare.innerText === square5.innerText) {
-            winner(currentSquare, square4, square5)
-            return true;
-        }
-    } else if(currentSquare.id === "c1"){
-        if(currentSquare.innerText === square8.innerText && currentSquare.innerText === square9.innerText) {
-            winner(currentSquare, square8, square9)
-            return true;
-        } else if (currentSquare.innerText === square1.innerText && currentSquare.innerText === square4.innerText) {
-            winner(currentSquare, square1, square4)
-            return true;
-        } else if (currentSquare.innerText === square3.innerText && currentSquare.innerText === square5.innerText) {
-            winner(currentSquare, square3, square5)
-            return true;
-        }
-    } else if(currentSquare.id === "c2"){
-        if(currentSquare.innerText === square7.innerText && currentSquare.innerText === square9.innerText) {
-            winner(currentSquare, square7, square9)
-            return true;
-        } else if (currentSquare.innerText === square2.innerText && currentSquare.innerText === square5.innerText) {
-            winner(currentSquare, square2, square5)
-            return true;
-        }
-    } else if(currentSquare.id === "c3"){
-        if(currentSquare.innerText === square7.innerText && currentSquare.innerText === square8.innerText) {
-            winner(currentSquare, square7, square8)
-            return true;
-        } else if (currentSquare.innerText === square1.innerText && currentSquare.innerText === square5.innerText) {
-            winner(currentSquare, square5, square1)
-            return true;
-        } else if (currentSquare.innerText === square3.innerText && currentSquare.innerText === square6.innerText) {
-            winner(currentSquare, square6, square3)
-            return true;
-        }
-    } else {
-        return false;
-    }
-
-}
-    const winner = (sq1, sq2, sq3) => {
-        messageBox.innerText= counter + " wins"
-        sq1.style.backgroundColor = "green"
-        sq2.style.backgroundColor = "green"
-        sq3.style.backgroundColor = "green"
 }
 
-resetButton.addEventListener("click", () => {
-    console.log(squares)
-    squares.forEach((item)=>{
-        console.log(item)
+for (i =0; i<squares.length; i++){
+    squares[i].id = "s"+i
+    squares[i].addEventListener("click", (e) => {
+        if(e.target.innerHTML === "") {
+            counter = currentPlayer(counter)
+            updateMessageBox("turn", counter)
+            e.target.innerHTML ="<h1>"+counter+"</h1>"
+            numberOfPlays ++
+            if(!checkIfWinner(e.target)){
+                if(numberOfPlays===9){
+                    draw()
+                }
+            }    
+        }
     })
-    square1.style.backgroundColor = "white";
-    square2.style.backgroundColor = "white";
-    square3.style.backgroundColor = "white";
-    square4.style.backgroundColor = "white";
-    square5.style.backgroundColor = "white";
-    square6.style.backgroundColor = "white";
-    square7.style.backgroundColor = "white";
-    square8.style.backgroundColor = "white";
-    square9.style.backgroundColor = "white";
-    square1.innerText = ""
-    square2.innerText = ""
-    square3.innerText = ""
-    square4.innerText = ""
-    square5.innerHTML = ""
-    square6.innerText = ""
-    square7.innerText = ""
-    square8.innerText = ""
-    square9.innerText = ""
+}
+
+const checkIfWinner = (currentSquare, i) => {
+    if(currentSquare.id === "s0"){
+        if(currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[2].innerText) {
+            return winner(currentSquare, squares[1], squares[2])
+        } else if (currentSquare.innerText === squares[3].innerText && currentSquare.innerText === squares[6].innerText) {
+            return winner(currentSquare, squares[3], squares[6])
+        } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[8].innerText) {
+            return winner(currentSquare, squares[4], squares[8])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s1"){
+        if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[2].innerText) {
+            return winner(currentSquare, squares[0], squares[2])
+        } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[7].innerText) {
+            return winner(currentSquare, squares[4], squares[7])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s2"){
+        if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[1].innerText) {
+            return winner(currentSquare, squares[0], squares[1])
+        } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[6].innerText) {
+            return winner(currentSquare, squares[4], squares[6])
+        } else if (currentSquare.innerText === squares[5].innerText && currentSquare.innerText === squares[8].innerText) {
+            return winner(currentSquare, squares[5], squares[8])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s3"){
+        if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[6].innerText) {
+            return winner(currentSquare, squares[0], squares[6])
+        } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[5].innerText) {
+            return winner(currentSquare, squares[4], squares[5])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s4"){
+        if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[8].innerText) {
+            return winner(currentSquare, squares[0], squares[8])
+        } else if (currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[7].innerText) {
+            return winner(currentSquare, squares[1], squares[7])
+        } else if (currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[6].innerText) {
+            return winner(currentSquare, squares[2], squares[6])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s5"){
+        if(currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[8].innerText) {
+            return winner(currentSquare, squares[8], squares[2])
+        } else if (currentSquare.innerText === squares[3].innerText && currentSquare.innerText === squares[4].innerText) {
+            return winner(currentSquare, squares[3], squares[4])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s6"){
+        if(currentSquare.innerText === squares[7].innerText && currentSquare.innerText === squares[8].innerText) {
+            return winner(currentSquare, squares[7], squares[8])
+        } else if (currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[3].innerText) {
+            return winner(currentSquare, squares[0], squares[3])
+        } else if (currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[4].innerText) {
+            return winner(currentSquare, squares[2], squares[4])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s7"){
+        if(currentSquare.innerText === squares[6].innerText && currentSquare.innerText === squares[8].innerText) {
+            return winner(currentSquare, squares[6], squares[8])
+        } else if (currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[4].innerText) {
+            return winner(currentSquare, squares[1], squares[4])
+        } else {
+            return false;
+        }
+    } else if(currentSquare.id === "s8"){
+        if(currentSquare.innerText === squares[6].innerText && currentSquare.innerText === squares[7].innerText) {
+            return winner(currentSquare, squares[6], squares[7])
+        } else if (currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[4].innerText) {
+            return winner(currentSquare, squares[4], squares[0])
+        } else if (currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[5].innerText) {
+            return winner(currentSquare, squares[5], squares[2])
+        }else {
+            return false;
+        }
+    } 
+}
+const winner = (sq1, sq2, sq3) => {
+    updateMessageBox("win", counter)
     sectionArea.classList.toggle("section-toggle");
     resetButton.classList.toggle("reset-button-toggle");
-    messageBox.innerText=currentPlayer(counter)+"'s turn"
+    sq1.style.backgroundColor = "#008000"
+    sq2.style.backgroundColor = "#008000"
+    sq3.style.backgroundColor = "#008000"
+    return true;
+}
+
+const draw = () => {
+    updateMessageBox("draw", false)
+    for (i =0; i<9; i++){
+        squares[i].style.backgroundColor = "#a52a2a";
+    }
+    sectionArea.classList.toggle("section-toggle");
+    resetButton.classList.toggle("reset-button-toggle");
+}
+
+resetButton.addEventListener("click", () => { 
+    updateMessageBox("turn", counter)
+    numberOfPlays = 0
+    for (i =0; i<9; i++){
+        squares[i].style.backgroundColor = "#ffffff";
+        squares[i].innerText = ""
+    }
+    sectionArea.classList.toggle("section-toggle");
+    resetButton.classList.toggle("reset-button-toggle");
+   
 })
 
 
