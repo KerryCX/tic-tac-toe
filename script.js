@@ -34,6 +34,7 @@ const updateMessageBox = (type, counter) => {
 }
 
 for (i =0; i<squares.length; i++){
+    squares[i].id = "s"+i
     squares[i].addEventListener("click", (e) => {
         if(e.target.innerHTML === "") {
             counter = currentPlayer(counter)
@@ -45,9 +46,8 @@ for (i =0; i<squares.length; i++){
     })
 }
 
-const checkIfWinner = (currentSquare) => {
-    console.log(currentSquare)
-    if(currentSquare.id === "a1"){
+const checkIfWinner = (currentSquare, i) => {
+    if(currentSquare.id === "s0"){
         if(currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[2].innerText) {
             return winner(currentSquare, squares[1], squares[2])
         } else if (currentSquare.innerText === squares[3].innerText && currentSquare.innerText === squares[6].innerText) {
@@ -60,7 +60,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "a2"){
+    } else if(currentSquare.id === "s1"){
         if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[2].innerText) {
             return winner(currentSquare, squares[0], squares[2])
         } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[7].innerText) {
@@ -71,7 +71,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "a3"){
+    } else if(currentSquare.id === "s2"){
         if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[1].innerText) {
             return winner(currentSquare, squares[0], squares[1])
         } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[6].innerText) {
@@ -84,7 +84,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "b1"){
+    } else if(currentSquare.id === "s3"){
         if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[6].innerText) {
             return winner(currentSquare, squares[0], squares[6])
         } else if (currentSquare.innerText === squares[4].innerText && currentSquare.innerText === squares[5].innerText) {
@@ -95,7 +95,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "b2"){
+    } else if(currentSquare.id === "s4"){
         if(currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[8].innerText) {
             return winner(currentSquare, squares[0], squares[8])
         } else if (currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[7].innerText) {
@@ -108,7 +108,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "b3"){
+    } else if(currentSquare.id === "s5"){
         if(currentSquare.innerText === squares[2].innerText && currentSquare.innerText === squares[8].innerText) {
             return winner(currentSquare, squares[8], squares[2])
         } else if (currentSquare.innerText === squares[3].innerText && currentSquare.innerText === squares[4].innerText) {
@@ -119,7 +119,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "c1"){
+    } else if(currentSquare.id === "s6"){
         if(currentSquare.innerText === squares[7].innerText && currentSquare.innerText === squares[8].innerText) {
             return winner(currentSquare, squares[7], squares[8])
         } else if (currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[3].innerText) {
@@ -132,7 +132,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "c2"){
+    } else if(currentSquare.id === "s7"){
         if(currentSquare.innerText === squares[6].innerText && currentSquare.innerText === squares[8].innerText) {
             return winner(currentSquare, squares[6], squares[8])
         } else if (currentSquare.innerText === squares[1].innerText && currentSquare.innerText === squares[4].innerText) {
@@ -143,7 +143,7 @@ const checkIfWinner = (currentSquare) => {
             }
             return false;
         }
-    } else if(currentSquare.id === "c3"){
+    } else if(currentSquare.id === "s8"){
         if(currentSquare.innerText === squares[6].innerText && currentSquare.innerText === squares[7].innerText) {
             return winner(currentSquare, squares[6], squares[7])
         } else if (currentSquare.innerText === squares[0].innerText && currentSquare.innerText === squares[4].innerText) {
