@@ -2,11 +2,7 @@ let counter = "O"
 let numberOfPlays = 0
 
 const currentPlayer = (player) => {
-    if(player === "X") {
-        return "O"
-    } else {
-        return "X"
-    }
+    return player === "X" ? "O" : "X"
 }
 
 const messageBox = document.querySelector("#message")
@@ -42,9 +38,7 @@ for (i =0; i<squares.length; i++){
             e.target.innerHTML ="<h1>"+counter+"</h1>"
             numberOfPlays ++
             if(!checkIfWinner(e.target)){
-                console.log("not winner this time")
                 if(numberOfPlays===9){
-                    console.log("draw")
                     draw()
                 }
             }    
