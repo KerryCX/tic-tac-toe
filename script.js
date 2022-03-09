@@ -6,7 +6,7 @@ const currentPlayer = (player) => {
 }
 
 const messageBox = document.querySelector("#message")
-const sectionArea = document.querySelector("section")
+const sectionArea = document.querySelector(".section-container")
 const resetButton = document.querySelector(".reset-button")
 const squares = document.querySelectorAll(".square")
 

@@ -8,15 +8,20 @@ body {
 
 main {
     background-color: #faebd7;
+    
 }
 
-section {
+.section-container{
+    display: flex;
+    justify-content: center;
+}
+.grid-container {
     display: grid;
     grid-template-areas: ". . ."
     ". . ."
     ". . .";
-    height: 50vh;
-    width: 50vw;
+    width: 500px;
+    height: 500px;
     row-gap: 0;
     column-gap: 0;
     margin: 50px;
@@ -33,7 +38,7 @@ section {
     justify-content: center; 
     background-color: #faebd7;
     height: 100px;
-    width: 75%;
+    width: 100%;
 }
 
 .reset-button {
