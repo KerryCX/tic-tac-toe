@@ -25,7 +25,7 @@ main {
   color: #aa336a;
 }
 
-h3 {
+#message {
   text-align: center;
   font-size: clamp(20px, 3vw, 50px);
   color: #4169e1;
