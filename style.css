@@ -8,6 +8,7 @@ body {
   background-color: #ff69b4;
 }
 
+/* Main layout: vertical stack, centred, full viewport height */
 main {
   background-color: #fadadd;
   min-height: 100vh;
@@ -19,34 +20,121 @@ main {
   gap: 16px;
 }
 
+/* Side-by-side layout: controls on the left, grid on the right */
+/* max-width keeps the layout from stretching too wide on large screens */
+.game-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  width: 100%;
+  max-width: 1000px;
+  justify-content: center;
+}
+
+/* Invisible spacer that mirrors the controls width on the right side */
+/* This keeps the grid visually centred under the heading */
+.game-layout::after {
+  content: "";
+  width: 160px;
+  flex-shrink: 0;
+}
+
+/* clamp() scales the heading between 40px and 80px based on viewport width */
 .game-heading {
   font-size: clamp(40px, 6vw, 80px);
   text-align: center;
   color: #aa336a;
 }
 
+/* Status message: whose turn, winner, draw, already taken */
+/* clamp() scales between 20px and 50px */
 #message {
   text-align: center;
   font-size: clamp(20px, 3vw, 50px);
   color: #4169e1;
 }
 
+/* Sidebar: fixed width, full grid height, buttons pushed to top and bottom */
+/* space-between pushes Start Again to align with the bottom of the grid */
+.mode-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 160px;
+  flex-shrink: 0;
+  justify-content: space-between;
+  height: min(500px, 55vh);
+}
+
+/* Wrapper that lets the grid column expand to fill remaining space */
 .section-container {
   display: flex;
   justify-content: center;
+  flex: 1;
 }
 
+/* Grid sizing uses min() to cap at 500px or 55vh, whichever is smaller */
+/* This keeps the grid on screen without overflowing on shorter viewports */
 .grid-container {
+  width: min(500px, 55vh);
+  height: min(500px, 55vh);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
-  width: min(500px, 55vh);
-  height: min(500px, 55vh);
   background-color: #aa336a;
   border: #aa336a 5px solid;
   border-radius: 3%;
 }
 
+/* Each group of buttons (mode, difficulty, marker) stacks vertically in the sidebar */
+.mode-toggle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Base button style: transparent with a pink border */
+.mode-btn {
+  width: 100%;
+  padding: 8px 16px;
+  font-size: 0.95rem;
+  border: 2px solid #aa336a;
+  border-radius: 8px;
+  background-color: transparent;
+  color: #aa336a;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* Active state: filled pink background, white text */
+.mode-btn--active {
+  background-color: #aa336a;
+  color: #ffffff;
+}
+
+/* hidden must come after any display rules to win the specificity battle */
+.hidden {
+  display: none;
+}
+
+/* difficulty-controls needs display:flex when visible */
+/* Declared separately from :not(.hidden) to avoid specificity conflicts */
+#difficulty-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Explicit override so .hidden wins over the display:flex above */
+#difficulty-controls.hidden {
+  display: none;
+}
+
+/* Each square fills its grid cell and centres its text content */
+/* font-size scales with viewport height so X and O stay proportional to the grid */
 .square {
   height: 100%;
   width: 100%;
@@ -61,16 +149,17 @@ main {
   cursor: pointer;
 }
 
+/* Win highlight: green background on the three winning squares */
 .square--winner {
   background-color: #008000;
 }
 
+/* Draw highlight: brown background on all squares when no winner */
 .square--draw {
   background-color: #a52a2a;
 }
 
 .reset-button {
-  margin-top: 16px;
   padding: 0 20px;
   height: 40px;
   background-color: #fdfd96;
@@ -79,6 +168,7 @@ main {
   cursor: pointer;
 }
 
+/* Flashing animation on the message box after a win or draw */
 .winner {
   animation: flashing 2s linear infinite;
 }
@@ -98,5 +188,76 @@ main {
   }
   100% {
     opacity: 0;
+  }
+}
+
+/* Mobile: stack controls above grid, grid fills the available width */
+/* order properties resequence elements without changing the HTML */
+@media (max-width: 600px) {
+  .game-layout {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Controls sit above the grid on mobile */
+  .mode-controls {
+    width: 100%;
+    height: auto;
+    justify-content: flex-start;
+    order: 1;
+  }
+
+  /* Grid follows the controls */
+  .section-container {
+    order: 2;
+    width: 100%;
+  }
+
+  /* calc(100vw - 40px) accounts for the 20px padding on each side of main */
+  .grid-container {
+    width: min(calc(100vw - 40px), 55vh);
+    height: min(calc(100vw - 40px), 55vh);
+  }
+
+  /* Button pairs sit side by side on mobile rather than stacking */
+  .mode-toggle {
+    flex-direction: row;
+  }
+
+  #difficulty-controls {
+    width: 100%;
+  }
+
+  /* Reset button moves below the grid on mobile using order */
+  .reset-button {
+    width: 100%;
+    order: 3;
+  }
+}
+
+/* Tablet portrait: sidebar and grid shrink to fit between 601px and 900px */
+/* Prevents the side-by-side layout from overflowing at 768px (iPad Mini/Air portrait) */
+@media (max-width: 900px) and (min-width: 601px) {
+  /* Tighter gap between sidebar and grid at tablet size */
+  .game-layout {
+    gap: 16px;
+  }
+
+  /* Spacer narrows to match the smaller sidebar width */
+  .game-layout::after {
+    width: 120px;
+  }
+
+  /* Sidebar narrows and height matches the smaller grid */
+  .mode-controls {
+    width: 120px;
+    height: min(400px, 55vh);
+  }
+
+  /* Grid caps at 400px instead of 500px to fit the available width */
+  .grid-container {
+    width: min(400px, 55vh);
+    height: min(400px, 55vh);
   }
 }
