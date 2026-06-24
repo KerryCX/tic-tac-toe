@@ -40,7 +40,7 @@ const updateMessage = (type) => {
   switch (type) {
     case "turn":
       messageBox.textContent = `${currentPlayer}'s turn!`;
-      messageBox.style.color = "#4169e1";
+      messageBox.style.color = "#00008B";
       break;
     case "taken":
       // Shown when a player clicks an already-occupied square
@@ -64,7 +64,7 @@ const updateMessage = (type) => {
     case "thinking":
       // Shown during the 500ms delay before the computer takes its turn
       messageBox.textContent = `Computer is thinking...`;
-      messageBox.style.color = "#4169e1";
+      messageBox.style.color = "#00008B";
       break;
   }
 };
