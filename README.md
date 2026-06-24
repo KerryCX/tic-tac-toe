@@ -1,6 +1,6 @@
 # Tic Tac Toe
 
-A browser-based two-player Tic Tac Toe game built with vanilla HTML, CSS, and JavaScript.
+A browser-based Tic Tac Toe game built with vanilla HTML, CSS, and JavaScript.
 
 ## About
 
@@ -14,7 +14,16 @@ This started as an early project and has since been refactored to improve code q
 
 ## How to play
 
-Two players take turns on the same device. X goes first. The first player to get three in a row (across, down, or diagonally) wins. You can restart at any point using the Start Again button.
+Choose your mode before the game starts:
+
+**Human vs Human** two players take turns on the same device. X goes first. The first player to get three in a row (across, down, or diagonally) wins.
+
+**Human vs Computer** play against the computer. Choose your difficulty and whether to play as X or O:
+
+- Easy - the computer picks randomly, like a parent who sometimes lets their child win
+- Hard - the computer blocks your wins and takes its own, but occasionally loses focus
+
+You can restart at any point using the Start Again button.
 
 ## Tech
 
