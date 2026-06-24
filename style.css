@@ -238,6 +238,7 @@ main {
   .reset-button {
     width: 100%;
     order: 3;
+    border: 2px solid #000000;
   }
 }
 
