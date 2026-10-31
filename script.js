@@ -16,6 +16,9 @@ let board = Array(9).fill("");
 let currentPlayer = "X";
 let gameOver = false;
 
+// Id of the computer's pending move, so a reset can cancel it
+let computerTimeoutId = null;
+
 // Mode state - set by the sidebar controls
 let gameMode = "humanVsHuman";
 let difficulty = "easy";
@@ -118,10 +121,23 @@ const getComputerMove = () => {
   return difficulty === "hard" ? getSmartMove() : getRandomMove();
 };
 
+// Gives each square a name for screen readers, e.g. "Row 1, column 2, empty"
+// The visible X or O is replaced by the label, so the label includes it
+const updateSquareLabel = (index) => {
+  const row = Math.floor(index / 3) + 1;
+  const column = (index % 3) + 1;
+  const state = board[index] === "" ? "empty" : board[index];
+  squares[index].setAttribute(
+    "aria-label",
+    `Row ${row}, column ${column}, ${state}`,
+  );
+};
+
 // Writes a move to the board array and updates the matching square in the DOM
 const applyMove = (index, marker) => {
   board[index] = marker;
   squares[index].textContent = marker;
+  updateSquareLabel(index);
 };
 
 // Handles end of game state - highlights squares and shows the result message
@@ -147,8 +163,8 @@ const endGame = (type) => {
 // The delay makes it feel like the computer is thinking rather than instant
 const takeComputerTurn = () => {
   updateMessage("thinking");
-  setTimeout(() => {
-    // Guard against the player resetting mid-delay
+  computerTimeoutId = setTimeout(() => {
+    computerTimeoutId = null;
     if (gameOver) return;
     const move = getComputerMove();
     currentPlayer = computerMarker;
@@ -216,13 +232,18 @@ squares.forEach((square, index) => {
 // Resets all game state and DOM back to a fresh start
 // Also triggers the computer's first move if the human is playing as O
 const resetGame = () => {
+  // Cancel a computer move that is still waiting, or it would land on the new board
+  clearTimeout(computerTimeoutId);
+  computerTimeoutId = null;
+
   board = Array(9).fill("");
   currentPlayer = "X";
   gameOver = false;
 
-  squares.forEach((square) => {
+  squares.forEach((square, index) => {
     square.textContent = "";
     square.classList.remove("square--winner", "square--draw");
+    updateSquareLabel(index);
   });
 
   messageBox.classList.remove("winner");
@@ -287,5 +308,6 @@ btnPlayAsO.addEventListener("click", () => {
   resetGame();
 });
 
-// Set the initial turn message when the page first loads
+// Set the initial turn message and square labels when the page first loads
 updateMessage("turn");
+squares.forEach((_, index) => updateSquareLabel(index));
