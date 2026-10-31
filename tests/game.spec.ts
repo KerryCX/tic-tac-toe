@@ -211,16 +211,25 @@ test.describe("human vs computer", () => {
     await expect(message(page)).toHaveText("X wins!");
   });
 
-  // Known bug: resetting during the computer's 500ms pause still lets a stale
-  // computer move land on the new board. The guard in takeComputerTurn checks
-  // gameOver, but resetGame has just set that back to false.
-  test.fixme("resetting during the computer's pause does not leave a stray move", async ({ page }) => {
+  test("resetting during the computer's pause does not leave a stray move", async ({ page }) => {
     await openGame(page);
     await chooseHumanVsComputer(page);
     await pinRandom(page, 0);
 
     await play(page, 4);
     await page.getByRole("button", { name: "Start Again" }).click();
+    await page.waitForTimeout(800);
+    expect(await boardText(page)).toEqual(EMPTY_BOARD);
+    await expect(message(page)).toHaveText("X's turn!");
+  });
+
+  test("switching mode during the computer's pause does not leave a stray move", async ({ page }) => {
+    await openGame(page);
+    await chooseHumanVsComputer(page);
+    await pinRandom(page, 0);
+
+    await play(page, 4);
+    await page.getByRole("button", { name: "Human vs Human" }).click();
     await page.waitForTimeout(800);
     expect(await boardText(page)).toEqual(EMPTY_BOARD);
   });

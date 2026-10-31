@@ -142,6 +142,10 @@ main {
 .square {
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  color: inherit;
   border: #000000 5px solid;
   display: flex;
   justify-content: center;
@@ -174,8 +178,25 @@ main {
 }
 
 /* Flashing animation on the message box after a win or draw */
+/* Runs twice (4 seconds) rather than forever, so nothing flashes for more than 5 seconds */
 .winner {
-  animation: flashing 2s linear infinite;
+  animation: flashing 2s linear 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .winner {
+    animation: none;
+  }
+}
+
+/* Visible keyboard focus on every button, including the squares */
+/* A dark outline with a white halo is visible on the pink, white and green backgrounds */
+.square:focus-visible,
+.mode-btn:focus-visible,
+.reset-button:focus-visible {
+  outline: 3px solid #00008b;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px #ffffff;
 }
 
 @keyframes flashing {
