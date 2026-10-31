@@ -14,3 +14,10 @@ _book
 *.epub
 *.mobi
 *.pdf
+
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
